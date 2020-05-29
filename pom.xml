@@ -8,6 +8,10 @@
     <artifactId>99bottles</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.release>14</maven.compiler.release>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
