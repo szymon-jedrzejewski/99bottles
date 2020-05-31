@@ -1,8 +1,13 @@
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
 public class SongTest {
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void shouldReturnVerse() {
@@ -20,6 +25,12 @@ public class SongTest {
                 "Take one down and pass it around. 96 bottles of beer on the wall.", song.getVerse(97));
     }
 
+    @Test
+    public void shouldThrowException() {
+        Song song = new Song();
+        exception.expect(IllegalArgumentException.class);
+        song.getVerse(-1);
+    }
     @Test
     public void shouldReturnThreeVerses() {
         Song song = new Song();

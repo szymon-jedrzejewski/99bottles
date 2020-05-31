@@ -1,5 +1,8 @@
 public class Song {
     public String getVerse(int verse) {
+        if (verse < 0 || verse > 99) {
+            throw new IllegalArgumentException();
+        }
         return getAmountOfBottles(verse) + " of beer on the wall. " + getAmountOfBottles(verse) + " of beer.\n" +
                 getActivity(verse) + ". " + getAmountOfBottles(verse - 1) + " of beer on the wall.";
     }
