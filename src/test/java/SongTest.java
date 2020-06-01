@@ -26,7 +26,7 @@ public class SongTest {
     }
 
     @Test
-    public void shouldThrowException() {
+    public void shouldThrowExceptionWhenWrongVerse() {
         Song song = new Song();
         exception.expect(IllegalArgumentException.class);
         song.getVerse(-1);
