@@ -1,10 +1,13 @@
 public class Song {
     public String getVerse(int verse) {
-        if (verse < 0 || verse > 99) {
-            throw new IllegalArgumentException();
-        }
+        checkVerse(verse);
+
         return getAmountOfBottles(verse) + " of beer on the wall. " + getAmountOfBottles(verse) + " of beer.\n" +
                 getActivity(verse) + ". " + getAmountOfBottles(verse - 1) + " of beer on the wall.";
+    }
+
+    private void checkVerse(int verse) {
+        if (verse < 0 || verse > 99) throw new IllegalArgumentException();
     }
 
     private String getActivity(int verse) {
@@ -20,7 +23,9 @@ public class Song {
     }
 
     public String getVerses(int start, int end) {
-        if (start < 0 || end > 99) throw new IllegalArgumentException();
+
+        checkVerse(start);
+        checkVerse(end);
 
         if (end > start) throw new ArithmeticException();
 
