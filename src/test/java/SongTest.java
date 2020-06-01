@@ -31,6 +31,19 @@ public class SongTest {
         exception.expect(IllegalArgumentException.class);
         song.getVerse(-1);
     }
+
+    @Test
+    public void shouldThrowExceptionWhenWrongRange() {
+        Song song = new Song();
+        exception.expect(IllegalArgumentException.class);
+        song.getVerses(-1, 100);
+        song.getVerses(-1, 99);
+        song.getVerses(0, 100);
+
+        exception.expect(ArithmeticException.class);
+        song.getVerses(99, 1);
+    }
+
     @Test
     public void shouldReturnThreeVerses() {
         Song song = new Song();

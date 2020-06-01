@@ -20,6 +20,10 @@ public class Song {
     }
 
     public String getVerses(int start, int end) {
+        if (start < 0 || end > 99) throw new IllegalArgumentException();
+
+        if (end > start) throw new ArithmeticException();
+
         String verses = "";
         for (int i = start; i >= end; i--) {
             verses += getVerse(i) + "\n\n";
