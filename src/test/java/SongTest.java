@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,31 +6,32 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SongTest {
 
+    private Song song;
+    
+    @BeforeEach
+    public void setUp() {
+        song = new Song();
+    }
+
     @Test
     public void shouldReturnVerse() {
-        Song song = new Song();
-
         assertEquals("99 bottles of beer on the wall. 99 bottles of beer.\n" +
                 "Take one down and pass it around. 98 bottles of beer on the wall.", song.getVerse(99));
     }
 
     @Test
     public void shouldReturnAnotherVerse() {
-        Song song = new Song();
-
         assertEquals("97 bottles of beer on the wall. 97 bottles of beer.\n" +
                 "Take one down and pass it around. 96 bottles of beer on the wall.", song.getVerse(97));
     }
 
     @Test
     public void shouldThrowExceptionWhenWrongVerse() {
-        Song song = new Song();
         assertThrows(IllegalArgumentException.class, () -> song.getVerse(-1));
     }
 
     @Test
     public void shouldThrowExceptionWhenWrongRange() {
-        Song song = new Song();
         assertThrows(IllegalArgumentException.class, () -> song.getVerses(-1, 100));
         assertThrows(IllegalArgumentException.class, () -> song.getVerses(-1, 99));
         assertThrows(IllegalArgumentException.class, () -> song.getVerses(0, 100));
@@ -37,7 +39,6 @@ public class SongTest {
 
     @Test
     public void shouldReturnThreeVerses() {
-        Song song = new Song();
         String expected = "99 bottles of beer on the wall. 99 bottles of beer.\n" +
                 "Take one down and pass it around. 98 bottles of beer on the wall.\n" +
                 "\n" +
@@ -54,7 +55,6 @@ public class SongTest {
 
     @Test
     public void shouldReturnFirstVerse() {
-        Song song = new Song();
         String expected = "No more bottles of beer on the wall. No more bottles of beer.\n" +
                 "Go to the store and buy some more. 99 bottles of beer on the wall.";
 
@@ -65,7 +65,6 @@ public class SongTest {
 
     @Test
     public void shouldReturnSecondVerse() {
-        Song song = new Song();
         String expected = "1 bottle of beer on the wall. 1 bottle of beer.\n" +
                 "Take one down and pass it around. No more bottles of beer on the wall.";
 
@@ -76,7 +75,6 @@ public class SongTest {
 
     @Test
     public void shouldReturnWholeSong() {
-        Song song = new Song();
         String expected = "99 bottles of beer on the wall. 99 bottles of beer.\n" +
                 "Take one down and pass it around. 98 bottles of beer on the wall.\n" +
                 "\n" +
