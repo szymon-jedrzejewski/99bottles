@@ -1,13 +1,9 @@
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SongTest {
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void shouldReturnVerse() {
@@ -28,20 +24,15 @@ public class SongTest {
     @Test
     public void shouldThrowExceptionWhenWrongVerse() {
         Song song = new Song();
-        exception.expect(IllegalArgumentException.class);
-        song.getVerse(-1);
+        assertThrows(IllegalArgumentException.class, () -> song.getVerse(-1));
     }
 
     @Test
     public void shouldThrowExceptionWhenWrongRange() {
         Song song = new Song();
-        exception.expect(IllegalArgumentException.class);
-        song.getVerses(-1, 100);
-        song.getVerses(-1, 99);
-        song.getVerses(0, 100);
-
-        exception.expect(ArithmeticException.class);
-        song.getVerses(99, 1);
+        assertThrows(IllegalArgumentException.class, () -> song.getVerses(-1, 100));
+        assertThrows(IllegalArgumentException.class, () -> song.getVerses(-1, 99));
+        assertThrows(IllegalArgumentException.class, () -> song.getVerses(0, 100));
     }
 
     @Test
